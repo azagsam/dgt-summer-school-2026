@@ -12,6 +12,7 @@ dependencies = [
     "langchain-text-splitters",
     "langchain-openai",
     "faiss-cpu",
+    "rank-bm25",
     "wikipedia",
     "tiktoken",
     "numpy",
