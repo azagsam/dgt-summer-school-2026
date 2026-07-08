@@ -5,14 +5,7 @@ generation, and agents).
 
 ## Contents
 
-| File | Description |
-|---|---|
-| `Retrieval_augmented_generation.ipynb` | Build a RAG pipeline (chunking, embeddings, FAISS, retrieval, LCEL chains, conversational RAG) using the OpenAI API. |
-| `Introduction_to_agents.ipynb` | Build LLM agents with `smolagents` (tools, `CodeAgent` vs `ToolCallingAgent`, memory, multi-agent) using the OpenAI API. |
-| `DGT_summer_school_26_intro.pptx` | Intro slides. |
-| `DGT_summer_school_26_prompting_agents.pptx` | Prompting & agents slides. |
-
-Both notebooks call the **OpenAI API** — no local GPU or model download is required.
+All notebooks call the **OpenAI API** — no local GPU or model download is required.
 
 ## Prerequisites
 
