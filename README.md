@@ -5,6 +5,16 @@ generation, and agents).
 
 ## Contents
 
+The repository is organised as follows:
+
+| Path | Contents |
+|---|---|
+| `notebooks/` | Teaching materials and demos (Jupyter notebooks). |
+| `pyproject.toml`, `uv.lock` | Reproducible Python environment (see [Setup](#setup)). |
+| `README.md` | This file. |
+
+New teaching material and demos go under `notebooks/`.
+
 All notebooks call the **OpenAI API** — no local GPU or model download is required.
 
 ## Prerequisites
