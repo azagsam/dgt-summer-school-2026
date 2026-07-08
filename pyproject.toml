@@ -1,0 +1,27 @@
+[project]
+name = "dgt-summer-school-2026"
+version = "0.1.0"
+description = "Code material for the DGT Summer School 2026 (NLP: prompting, RAG, and agents)."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+
+dependencies = [
+    "langchain",
+    "langchain-community",
+    "langchain-core",
+    "langchain-text-splitters",
+    "langchain-openai",
+    "faiss-cpu",
+    "wikipedia",
+    "tiktoken",
+    "numpy",
+    "smolagents",
+    "openai",
+    "ddgs",
+    "python-dotenv",
+    "ipykernel",
+    "jupyterlab",
+]
+
+[tool.uv]
+# Keep resolutions reproducible; uv.lock pins exact versions for every install.
