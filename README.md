@@ -29,10 +29,14 @@ All notebooks call the **OpenAI API** — no local GPU or model download is requ
 
 ### 1. Get the code
 
+**If you have git:**
+
 ```bash
 git clone <this-repo-url>
 cd dgt-summer-school-2026
 ```
+
+**If you don't have git**, download a ZIP instead: on this page, find **Code** (big green button), **Download ZIP**, then unzip it and open a terminal in that folder.
 
 ### 2. Add your OpenAI API key
 
