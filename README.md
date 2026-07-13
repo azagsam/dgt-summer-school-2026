@@ -38,18 +38,7 @@ cd dgt-summer-school-2026
 
 **If you don't have git**, download a ZIP instead: on this page, find **Code** (big green button), **Download ZIP**, then unzip it and open a terminal in that folder.
 
-### 2. Add your OpenAI API key
-
-Create a file named `.env` in the project root with a single line:
-
-```
-OPENAI_API_KEY=sk-...your key here...
-```
-
-`.env` is git-ignored, so your key is never committed. The notebooks load it
-automatically via `python-dotenv`.
-
-### 3. Create the environment
+### 2. Create the environment
 
 ```bash
 uv sync
@@ -57,30 +46,45 @@ uv sync
 
 This reads `pyproject.toml` + `uv.lock` and creates a `.venv/` with the **exact
 locked versions** of every dependency — identical on Windows, macOS, and Linux.
+It downloads a fair amount (PyTorch, models tooling), so start it early and let it
+run while you do the next step.
 
 > If Python 3.12 is not installed, run `uv python install 3.12` first (or let
 > `uv sync` fetch it when prompted).
 
-## Running the notebooks
+### 3. Configure your API access
 
-**Option A — JupyterLab (from the terminal):**
+> **Summer school participants:** you will **not** call OpenAI's models directly.
+> Instead, the organisers provide you with a **custom base URL, model id(s), and
+> API key** for the course. Put those provided values in `.env` below — you do
+> not need your own OpenAI account.
 
-```bash
-uv run jupyter lab
+Create a file named `.env` in the project root with these three settings:
+
+```
+OPENAI_API_KEY=sk-...your key here...
+OPENAI_MODEL=gpt-4o-mini
+OPENAI_BASE_URL=https://api.openai.com/v1
 ```
 
-Then open a notebook in the browser tab that appears.
+- `OPENAI_API_KEY` — the key provided by the organisers (or your own from
+  https://platform.openai.com/api-keys if you are working outside the course).
+- `OPENAI_MODEL` — the chat model id to use (use the model id you were given).
+- `OPENAI_BASE_URL` — the API endpoint. Use the custom URL provided for the course;
+  the default above points at OpenAI directly for anyone working outside it.
 
-**Option B — VS Code / another IDE:**
+`.env` is git-ignored, so your key is never committed. The notebooks load these
+values automatically via `python-dotenv`.
 
-Open the folder, open a notebook, and select the interpreter at
-`.venv` (Windows: `.venv\Scripts\python.exe`, macOS/Linux: `.venv/bin/python`)
-as the notebook kernel.
+See `notebooks/Minimal_openai_and_embeddings.ipynb` for the smallest example of
+calling the chat API and computing local `sentence-transformers` embeddings.
 
-### Registering a named Jupyter kernel (optional)
+## 4. Running the notebooks
 
-If you want the environment to appear as a clearly-named kernel in the
-Jupyter / VS Code kernel picker (instead of a generic `.venv`), register it once:
+### 1. Register the named Jupyter kernel
+
+Register the environment once so it appears as a clearly-named kernel in the
+Jupyter / VS Code kernel picker (instead of a generic `.venv`):
 
 ```bash
 uv run python -m ipykernel install --user --name dgt-ss-2026 --display-name "DGT Summer School 2026 (uv)"
@@ -101,6 +105,12 @@ uv run jupyter kernelspec uninstall dgt-ss-2026
 > The kernel points at this project's `.venv`. If you delete and recreate the
 > `.venv` (e.g. another `uv sync`), the kernel keeps working as long as the
 > project path is unchanged; if you move the project, re-run the install command.
+
+### 2. Open a notebook and select the kernel
+
+**PyCharm / VS Code:** open the folder, open a notebook, and select the
+**"DGT Summer School 2026 (uv)"** kernel (or, equivalently, the interpreter at
+`.venv` — Windows: `.venv\Scripts\python.exe`, macOS/Linux: `.venv/bin/python`).
 
 > The `!pip install ...` cells at the top of each notebook are **not needed** —
 > `uv sync` already installed everything. You can skip (or delete) them.
