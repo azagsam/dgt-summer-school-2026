@@ -115,6 +115,32 @@ uv run jupyter kernelspec uninstall dgt-ss-2026
 > The `!pip install ...` cells at the top of each notebook are **not needed** —
 > `uv sync` already installed everything. You can skip (or delete) them.
 
+## Running Python outside the notebooks (optional)
+
+You normally don't need to "activate" anything — the notebooks run through the
+kernel you selected above. To run Python from a terminal, prefix any command with
+`uv run`:
+
+```bash
+uv run python                 # start a REPL in the project environment
+uv run python some_script.py  # run a script
+```
+
+`uv run` uses the project's `.venv` automatically and works **identically on
+Windows, macOS, and Linux**.
+
+Prefer to activate the venv manually?
+
+```bash
+# Windows (PowerShell)
+.venv\Scripts\Activate.ps1
+
+# macOS / Linux
+source .venv/bin/activate
+```
+
+Then plain `python` uses the environment until you run `deactivate`.
+
 ## Notes
 
 - **Reproducibility.** `uv.lock` pins every package (direct and transitive) to
