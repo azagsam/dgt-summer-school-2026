@@ -79,7 +79,7 @@ values automatically via `python-dotenv`.
 See `notebooks/Minimal_openai_and_embeddings.ipynb` for the smallest example of
 calling the chat API and computing local `sentence-transformers` embeddings.
 
-## 4. Running the notebooks
+## Running the notebooks
 
 ### 1. Register the named Jupyter kernel
 
