@@ -119,8 +119,6 @@ Then open a notebook from `notebooks/` and pick the
 **"DGT Summer School 2026 (uv)"** kernel via **Kernel → Change Kernel…** (or the
 kernel name in the top-right). Stop the server with `Ctrl+C` in the terminal.
 
-> Prefer the classic interface? `uv run jupyter notebook` works the same way.
-
 **PyCharm / VS Code:** open the folder, open a notebook, and select the
 **"DGT Summer School 2026 (uv)"** kernel (or, equivalently, the interpreter at
 `.venv` — Windows: `.venv\Scripts\python.exe`, macOS/Linux: `.venv/bin/python`).
