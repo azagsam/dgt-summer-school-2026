@@ -15,8 +15,6 @@ The repository is organised as follows:
 
 New teaching material and demos go under `notebooks/`.
 
-All notebooks call the **OpenAI API** — no local GPU or model download is required.
-
 ## Prerequisites
 
 - **[uv](https://docs.astral.sh/uv/)** — the Python package/environment manager.
