@@ -27,14 +27,20 @@ New teaching material and demos go under `notebooks/`.
 
 ### 1. Get the code
 
-**If you have git:**
+**Option A — if you have git**
 
 ```bash
 git clone <this-repo-url>
 cd dgt-summer-school-2026
 ```
 
-**If you don't have git**, download a ZIP instead: on this page, find **Code** (big green button), **Download ZIP**, then unzip it and open a terminal in that folder.
+**Option B — if you don't have git**
+
+Download a ZIP instead:
+
+1. On this page, click **Code** (the big green button), then **Download ZIP**.
+2. Unzip it.
+3. Open a terminal in the unzipped folder.
 
 ### 2. Create the environment
 
