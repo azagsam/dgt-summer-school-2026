@@ -71,14 +71,16 @@ macOS/Linux: `.venv/bin/python`).
 ## Running Python outside the notebooks (optional)
 
 To run notebooks as regular python scripts, you can always convert them
-to the correct `.py` format (where all the 'regular', non-code text is 
-commented out to let Python know to ignore it). 
+to the correct `.py` format where all the 'regular', non-code text is 
+commented out with # to let Python know to ignore it. 
 
-To convert, right-click a `.ipynb` notebook and select 
+To convert to `.py`, right-click a `.ipynb` notebook and select:
+
 - VS Code: 'Import Notebook to Script', then name and save the newly created file.
 - PyCharm: 'Convert to Python file' (automatically creates and saves file).
 
-You normally don't need to "activate" anything — the notebooks run through the
+
+You also normally don't need to "activate" anything — the notebooks run through the
 kernel you selected above. To run Python from a terminal, prefix any command with
 `python`:
 
