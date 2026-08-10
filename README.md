@@ -18,22 +18,23 @@ The repository is organised as follows:
 ## Prerequisites
 
 Read through the provided `SETUP-INSTRUCTIONS.md` which guides you to create a proper
-environment `.venv/` with the **exact locked versions** of every dependency. 
-It downloads a fair amount (PyTorch, models tooling), so start it early and let it run.
+environment `.venv/` with the **exact locked versions** of every dependency, 
+specific to the local constraints and policies. It downloads a fair amount of data
+(PyTorch, models tooling), so start it early and let it run.
 
 ### API access
 
-> **Summer school participants:** you will preferably **not** call OpenAI's models
-> directly but use the locally installed models. You should have defined this via 
-> the above setup (by running `setup.cmd`) or manually in the file `.env` 
-> with these three settings:
+> Summer school participants will preferably **not** call OpenAI's models
+> directly but use the locally installed models. 
+> This is controlled by providing the relevant settings in the above setup 
+> (by running `setup.cmd`) or manually in the file `.env`:
 
-- `OPENAI_API_KEY` — input your GPT@EC API key.
+- `OPENAI_API_KEY` — your GPT@EC API key.
 - `OPENAI_BASE_URL` — the GPT@EC API endpoint. 
 
 If information for the local models is not provided, the notebooks will 
 fall back to default values, and you will need to obtain an API key from 
-the organisers:
+the organisers.
 
 ```
 OPENAI_API_KEY=
@@ -41,17 +42,15 @@ OPENAI_MODEL=gpt-5.1
 OPENAI_BASE_URL=https://api.openai.com/v1
 ```
 
-`.env` is git-ignored, so your key is never committed. The notebooks load these
-values automatically via `python-dotenv`.
-
-See `notebooks/Minimal_openai_and_embeddings.ipynb` for the smallest example of
-calling the chat API and computing local `sentence-transformers` embeddings.
-
 ## Running the notebooks
 
-### Open a notebook and select the kernel
+Run `notebooks/1_Minimal_openai_and_embeddings.ipynb` for the smallest example of
+calling the chat API and computing local `sentence-transformers` embeddings. 
 
-**Jupyter Lab (browser):** launch it from the project root — it opens in your
+Notebook 2 and 3 are completely optional.
+
+### A) Running notebooks in the browser 
+Launch **Jupyter Lab** from the project root — it opens in your
 browser automatically:
 
 ```bash
@@ -62,13 +61,17 @@ Then open a notebook from `notebooks/` and pick the
 **"DGT Summer School 2026 (uv)"** kernel via **Kernel → Change Kernel…** (or the
 kernel name in the top-right). Stop the server with `Ctrl+C` in the terminal.
 
-**Jupyter Lab (VS Code):** double-click a notebook in `/notebooks`, 
-and select the **"DGT Summer School 2026 (uv)"** kernel (or, equivalently, 
-the interpreter at `.venv` — Windows: `.venv\Scripts\python.exe`,
-macOS/Linux: `.venv/bin/python`).
+### B) Running notebooks directly in VS Code
+
+Double-click a notebook in `/notebooks`, it should open in a new tab
+in VS Code. Read through and run the code in the cells. 
+
+If it asks for a kernel, select the **"DGT Summer School 2026 (uv)"**
+kernel (or, equivalently, the interpreter at`.venv` — 
+Windows: `.venv\Scripts\python.exe`, macOS/Linux: `.venv/bin/python`).
 
 
-## Running Python outside the notebooks (optional)
+### Running Python scripts outside the notebooks (optional)
 
 To run notebooks as regular python scripts, you can always convert them
 to the correct `.py` format where all the 'regular', non-code text is 
