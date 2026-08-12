@@ -27,15 +27,3 @@ dependencies = [
     "torch",
 ]
 
-[tool.uv]
-# Keep resolutions reproducible; uv.lock pins exact versions for every install.
-
-# Install the CPU-only build of PyTorch (no CUDA wheels) — smaller and works
-# everywhere, since sentence-transformers only needs CPU for these demos.
-[tool.uv.sources]
-torch = { index = "pytorch-cpu" }
-
-[[tool.uv.index]]
-name = "pytorch-cpu"
-url = "https://download.pytorch.org/whl/cpu"
-explicit = true
