@@ -16,7 +16,7 @@
 
 ## 2 Download and extract course package 
 
-👉 Download the repository: on the [*main repository page*](..), find `< > Code`(big green button)
+👉 Download the repository: on the [*main repository page*](https://github.com/azagsam/dgt-summer-school-2026/), find `< > Code`(big green button)
 and select **Download ZIP**. Extract the complete  package into a writable local 
 to create your project directory (e.g., `.../CATE/dgt-summer-school-2026/`). 
 
