@@ -41,8 +41,7 @@ to create your project directory (e.g., `.../CATE/dgt-summer-school-2026/`).
    py -3.12 setup_environment.py
    ```
 
-#### ✳️ NOTE ✳️ 
-  > *To run PowerShell from the project directory, go to the project directory,* 
+ > ✳️  *To run PowerShell from the project directory, go to the project directory,* 
    *hold down the Shift key and right-click anywhere to open up the explorer menu.*
    *Select **Open PowerShell here***
    
@@ -57,8 +56,7 @@ The bootstrap will:
       6. register the environment as the named Jupyter kernel
          **Python (DGT Summer School 2026)**.
 
-#### ✳️ NOTE ✳️  
-  > *If you mistype anything, you can open `.env` with Notepad and manually correct it.*
+ >✳️ *If you mistype anything, you can open `.env` with Notepad and manually correct it.*
 
 ## 4️⃣ Open project in Visual Studio Code
 
@@ -69,13 +67,11 @@ The notebooks should already be associated with the following named kernel:
 ```text
 Python (DGT Summer School 2026)
 ```
-#### ✳️ NOTE ✳️ 
->   On a clean machine, VS Code should match the notebook metadata to the registered
+>  ✳️  On a clean machine, VS Code should match the notebook metadata to the registered
    kernel. If the notebook still says **Select Kernel**, or if VS Code was already*
    open during setup, restart VS Code. Then use the kernel picker in the upper-right:
    **Select Another Kernel > Jupyter Kernels > Python (DGT Summer School 2026)**.
-   
- >  Do not choose the entry under **Python Environments** if you want the named label;
+> Do not choose the entry under **Python Environments** if you want the named label;
    that equivalent route may be displayed simply as `.venv (Python 3.12.x)`.
 
 
@@ -92,7 +88,7 @@ Notebook 2 and 3 are completely optional.
 Double-click a notebook in `/notebooks`, it should open in a new tab
 in VS Code. Read through and run the code in the cells. 
 
-> ✳️ NOTE ✳️  If it asks for a kernel, first restart VS Code. Then use the kernel picker in the upper-right:
+> ✳️ If it asks for a kernel, first restart VS Code. Then use the kernel picker in the upper-right:
    **Select Kernel > Jupyter Kernel … > DGT Summer School 2026 (uv)**
    kernel (or, equivalently, the interpreter at`.venv` — 
    Windows: `.venv\Scripts\python.exe`, macOS/Linux: `.venv/bin/python`).
@@ -139,6 +135,22 @@ Prefer to activate the venv manually? Run:
 ```
 
 Then plain `python` uses the environment until you run `deactivate`.
+
+## 6 Policy and proxy limitations
+
+The batch file merely locates the approved Python 3.12 interpreter and invokes
+`setup_environment.py`. It does not alter or bypass PowerShell execution policy.
+If Group Policy or application control also prohibits batch files or local
+Python scripts, stop and request the normal IT approval rather than bypassing
+the restriction.
+
+The proxy URL approach works with standard HTTP/HTTPS proxy authentication. If
+the corporate proxy requires NTLM, Kerberos, a PAC file, or a locally managed
+proxy helper, username and password in the URL may not be sufficient. An HTTP
+407 response normally indicates that the authentication method or credentials
+need to be checked with IT.
+
+
 
 ## ✳️ Additional notes ✳️
 
@@ -188,18 +200,3 @@ settings before making API calls or downloading models:
 from dotenv import load_dotenv
 load_dotenv()
 ```
-
-
-## 6 Policy and proxy limitations
-
-The batch file merely locates the approved Python 3.12 interpreter and invokes
-`setup_environment.py`. It does not alter or bypass PowerShell execution policy.
-If Group Policy or application control also prohibits batch files or local
-Python scripts, stop and request the normal IT approval rather than bypassing
-the restriction.
-
-The proxy URL approach works with standard HTTP/HTTPS proxy authentication. If
-the corporate proxy requires NTLM, Kerberos, a PAC file, or a locally managed
-proxy helper, username and password in the URL may not be sufficient. An HTTP
-407 response normally indicates that the authentication method or credentials
-need to be checked with IT.
