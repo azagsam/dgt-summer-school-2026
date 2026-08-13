@@ -42,8 +42,8 @@ OPENAI_BASE_URL=https://api.openai.com/v1
 
 ## 1️⃣ Add project to Visual Studio Code
 
-👉 After setup, open VS Code and use **File > Open Folder** to open the project folder,
-e.g. `../dgt-summer-school-2026/`
+👉 After setup, open VS Code and use **File > Open Folder** to open the 
+project folder you created during setup, e.g. `../dgt-summer-school-2026/`.
 The notebooks should already be associated with the following named kernel:
 
 ```text
@@ -118,6 +118,13 @@ Prefer to activate the venv manually? Run:
 
 Then plain `python` uses the environment until you run `deactivate`.
 
+## 4️⃣ Setup complete
+
+If you have successfully run the notebook, your laptop is now set up and ready for the summer school.
+
+During the summer school, new material (notebooks) will be uploaded to the 
+[**main repository page**](https://github.com/azagsam/dgt-summer-school-2026/).
+You can download them individually and add them to your existing project.
 
 ### Notes
 
