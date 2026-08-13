@@ -17,10 +17,10 @@ The repository is organised as follows:
 
 ## Setup
 
-👉 Read through the provided `SETUP-INSTRUCTIONS.md` which guides you to create a proper
+👉 Read through the provided `[SETUP-INSTRUCTIONS.md](SETUP-INSTRUCTIONS.md)` which guides you to create a proper
 environment `.venv/` with the **exact locked versions** of every dependency, 
-specific to the local constraints and policies. You will download a fair amount of data
-(PyTorch, models tooling), so start it early and let it run.
+specific to the local constraints and policies, and guides you to run your first Python 
+notebook. In the process, you will download a fair amount of data (PyTorch, models tooling), so start it early and let it run.
 
 ### API access
 

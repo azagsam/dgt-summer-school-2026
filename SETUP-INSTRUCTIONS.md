@@ -16,7 +16,7 @@
 
 ## 2 Download and extract course package 
 
-👉 Download the repository: on the repository page, find **Code** (big green button)
+👉 Download the repository: on the [main repository page](..), find **< > Code** (big green button)
 and select **Download ZIP**. Extract the complete  package into a writable local 
 to create your project directory (e.g., `.../CATE/dgt-summer-school-2026/`). 
 
@@ -82,7 +82,7 @@ Python (DGT Summer School 2026)
 
 ## 2 - Running the notebooks
 
-👉 Run `notebooks/1_Minimal_openai_and_embeddings.ipynb` for the smallest example of
+👉 Run `[notebooks/1_Minimal_openai_and_embeddings.ipynb](notebooks/1_Minimal_openai_and_embeddings.ipynb)` for the smallest example of
 calling the chat API and computing local `sentence-transformers` embeddings. To run
 the notebook, use options A or B described below.
 
