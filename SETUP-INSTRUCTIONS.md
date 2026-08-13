@@ -12,11 +12,11 @@
 
 👉 Make sure you have been granted access to the local GPT@EC and an API key.
 
-##### *(Administrator rights, `uv`, and PowerShell scripts are not required for the course setup itself.)*
+> **(Administrator rights, `uv`, and PowerShell scripts are not required for the course setup itself.)**
 
 ## 2 Download and extract course package 
 
-👉 Download the repository: on the [`main repository page`](..), find **< > Code** (big green button)
+👉 Download the repository: on the [*main repository page*](..), find `< > Code`(big green button)
 and select **Download ZIP**. Extract the complete  package into a writable local 
 to create your project directory (e.g., `.../CATE/dgt-summer-school-2026/`). 
 
@@ -24,7 +24,7 @@ to create your project directory (e.g., `.../CATE/dgt-summer-school-2026/`).
    folder structure. Do not transfer `.venv` from another computer.
 
 
-## Run the setup
+## 3 Run the setup
 
 👉 Go to the project directory, and double-click **setup.cmd** to run it.
 
@@ -41,8 +41,8 @@ to create your project directory (e.g., `.../CATE/dgt-summer-school-2026/`).
    py -3.12 setup_environment.py
    ```
 
-#### NOTE ✳️ 
-   *To run PowerShell from the project directory, go to the project directory,* 
+#### ✳️ NOTE ✳️ 
+  > *To run PowerShell from the project directory, go to the project directory,* 
    *hold down the Shift key and right-click anywhere to open up the explorer menu.*
    *Select **Open PowerShell here***
    
@@ -57,10 +57,10 @@ The bootstrap will:
       6. register the environment as the named Jupyter kernel
          **Python (DGT Summer School 2026)**.
 
-#### NOTE ✳️  
-   *If you mistype anything, you can open `.env` with Notepad and manually correct it.*
+#### ✳️ NOTE ✳️  
+  > *If you mistype anything, you can open `.env` with Notepad and manually correct it.*
 
-## Open project in Visual Studio Code
+## 4 Open project in Visual Studio Code
 
 👉 After setup, open VS Code and use **File > Open Folder** to open the extracted
 `dgt-summer-school-2026` installation folder (not just an individual notebook). 
@@ -70,17 +70,17 @@ The notebooks are already associated with the following named kernel:
 Python (DGT Summer School 2026)
 ```
 
-#### NOTE ✳️ 
-   On a clean machine, VS Code should match the notebook metadata to the registered
+#### ✳️ NOTE ✳️ 
+>   On a clean machine, VS Code should match the notebook metadata to the registered
    kernel. If the notebook still says **Select Kernel**, or if VS Code was already*
    open during setup, restart VS Code. Then use the kernel picker in the upper-right:
    **Select Another Kernel > Jupyter Kernels > Python (DGT Summer School 2026)**.
    
-   Do not choose the entry under **Python Environments** if you want the named label;
+ >  Do not choose the entry under **Python Environments** if you want the named label;
    that equivalent route may be displayed simply as `.venv (Python 3.12.x)`.
 
 
-## 2 - Running the notebooks
+## 5 - Run a notebook
 
 👉 Run [`notebooks/1_Minimal_openai_and_embeddings.ipynb`](notebooks/1_Minimal_openai_and_embeddings.ipynb) for the smallest example of
 calling the chat API and computing local `sentence-transformers` embeddings. To run
@@ -96,7 +96,7 @@ browser automatically:
    jupyter lab
    ```
    
-   Then, open a notebook from `notebooks/` and pick the
+Then, open a notebook from `notebooks/` and pick the
    **"DGT Summer School 2026 (uv)"** kernel via **Kernel → Change Kernel…** (or the
    kernel name in the top-right). Stop the server with `Ctrl+C` in the terminal.
 
@@ -105,14 +105,14 @@ browser automatically:
 Double-click a notebook in `/notebooks`, it should open in a new tab
 in VS Code. Read through and run the code in the cells. 
 
-   If it asks for a kernel, select the **"DGT Summer School 2026 (uv)"**
+>If it asks for a kernel, select the **"DGT Summer School 2026 (uv)"***
    kernel (or, equivalently, the interpreter at`.venv` — 
    Windows: `.venv\Scripts\python.exe`, macOS/Linux: `.venv/bin/python`).
 
 
 
 
-### Additional notes
+### ✳️ Additional notes ✳️
 
 ### About setup.md and .env
 Do not change the proxy URL, `OPENAI_BASE_URL`, or `OPENAI_MODEL` supplied in
@@ -191,7 +191,7 @@ Prefer to activate the venv manually? Run:
 Then plain `python` uses the environment until you run `deactivate`.
 
 
-## Policy and proxy limitations
+## 6 Policy and proxy limitations
 
 The batch file merely locates the approved Python 3.12 interpreter and invokes
 `setup_environment.py`. It does not alter or bypass PowerShell execution policy.

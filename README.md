@@ -32,7 +32,7 @@ notebook. In the process, you will download a fair amount of data (PyTorch, mode
 - `OPENAI_API_KEY` — your GPT@EC API key.
 - `OPENAI_BASE_URL` — the GPT@EC API endpoint. 
 
-If information for the local models is not provided, the notebooks will 
+> If information for the local models is not provided, the notebooks will 
 fall back to default values, and you will need to obtain an API key from 
 the organisers.
 
