@@ -15,11 +15,11 @@ The repository is organised as follows:
 | `setup.cmd`                 | DGT-specific script to install the environment.  |
 | `pyproject.toml`, `uv.lock` | Reproducible Python environment for uv users.    |
 
-## Prerequisites
+## Setup
 
-Read through the provided `SETUP-INSTRUCTIONS.md` which guides you to create a proper
+👉 Read through the provided `SETUP-INSTRUCTIONS.md` which guides you to create a proper
 environment `.venv/` with the **exact locked versions** of every dependency, 
-specific to the local constraints and policies. It downloads a fair amount of data
+specific to the local constraints and policies. You will download a fair amount of data
 (PyTorch, models tooling), so start it early and let it run.
 
 ### API access
@@ -42,66 +42,8 @@ OPENAI_MODEL=gpt-5.1
 OPENAI_BASE_URL=https://api.openai.com/v1
 ```
 
-## Running the notebooks
 
-Run `notebooks/1_Minimal_openai_and_embeddings.ipynb` for the smallest example of
-calling the chat API and computing local `sentence-transformers` embeddings. 
-
-Notebook 2 and 3 are completely optional.
-
-### A) Running notebooks in the browser 
-Launch **Jupyter Lab** from the project root — it opens in your
-browser automatically:
-
-```bash
-jupyter lab
-```
-
-Then open a notebook from `notebooks/` and pick the
-**"DGT Summer School 2026 (uv)"** kernel via **Kernel → Change Kernel…** (or the
-kernel name in the top-right). Stop the server with `Ctrl+C` in the terminal.
-
-### B) Running notebooks directly in VS Code
-
-Double-click a notebook in `/notebooks`, it should open in a new tab
-in VS Code. Read through and run the code in the cells. 
-
-If it asks for a kernel, select the **"DGT Summer School 2026 (uv)"**
-kernel (or, equivalently, the interpreter at`.venv` — 
-Windows: `.venv\Scripts\python.exe`, macOS/Linux: `.venv/bin/python`).
-
-
-### Running Python scripts outside the notebooks (optional)
-
-To run notebooks as regular python scripts, you can always convert them
-to the correct `.py` format where all the 'regular', non-code text is 
-commented out with # to let Python know to ignore it. 
-
-To convert to `.py`, right-click a `.ipynb` notebook and select:
-
-- VS Code: 'Import Notebook to Script', then name and save the newly created file.
-- PyCharm: 'Convert to Python file' (automatically creates and saves file).
-
-
-You also normally don't need to "activate" anything — the notebooks run through the
-kernel you selected above. To run Python from a terminal, prefix any command with
-`python`:
-
-```bash
-python some_script.py  # run a script
-```
-
-Prefer to activate the venv manually? Run:
-
-```bash
-# on Windows (PowerShell)
-.venv\Scripts\Activate.ps1
-
-```
-
-Then plain `python` uses the environment until you run `deactivate`.
-
-## Notes
+### Notes
 
 - **Cost.** Running the notebooks makes OpenAI API calls (embeddings + chat
   completions on `gpt-5.1` / `text-embedding-3-small`), which cost a small
