@@ -11,14 +11,17 @@ The repository is organised as follows:
 |----------------------------|--------------------------------------------------|
 | `notebooks/`               | Teaching materials and demos (Jupyter notebooks). |
 | `README.md`                | This file.                                       |
-| `pyproject.toml`, `uv.lock` | Reproducible Python environment for uv users.    |
+| `pyproject.toml`, `uv.lock`| Reproducible Python environment for uv users.   |
 
-## Setup
+## 0️⃣ Environment setup
 
-👉 Read through the provided `SETUP-INSTRUCTIONS.md` which guides you to create a proper
+👉 Read through the provided `SETUP-INSTRUCTIONS.md` which guide you to create a proper
 environment with the **exact locked versions** of every dependency, 
 specific to the local constraints and policies. In the process, you will download a fair
 amount of data (PyTorch, models tooling), so start it early and let it run.
+
+
+#### API access
 
 > Summer school participants will preferably use the locally installed GPT models. 
 > This is controlled by providing the relevant settings in the above setup 
@@ -37,10 +40,10 @@ OPENAI_MODEL=gpt-5.1
 OPENAI_BASE_URL=https://api.openai.com/v1
 ```
 
-## 1️⃣ Open project in Visual Studio Code
+## 1️⃣ Add project to Visual Studio Code
 
-👉 After setup, open VS Code and use **File > Open Folder** to open the extracted
-installation folder created in step 2, e.g. `../dgt-summer-school-2026/`  (not just an individual notebook). 
+👉 After setup, open VS Code and use **File > Open Folder** to open the project folder,
+e.g. `../dgt-summer-school-2026/`
 The notebooks should already be associated with the following named kernel:
 
 ```text
@@ -56,11 +59,11 @@ Python (DGT Summer School 2026)
 
 ## 2️⃣ Run a notebook
 
-👉 Run [`notebooks/1_Minimal_openai_and_embeddings.ipynb`](notebooks/1_Minimal_openai_and_embeddings.ipynb) for the smallest example of
-calling the chat API and computing local `sentence-transformers` embeddings. To run
+👉 Run [`notebooks/1_Minimal_openai_and_embeddings.ipynb`](notebooks/1_Minimal_openai_and_embeddings.ipynb) 
+for the smallest example of calling the chat API and computing local `sentence-transformers` embeddings. To run
 the notebook, use options A or B described below.
 
-Notebook 2 and 3 are completely optional.
+Notebooks 2 and 3 are completely optional.
 
 ### A) Running notebooks directly in VS Code
 
@@ -114,7 +117,6 @@ Prefer to activate the venv manually? Run:
 ```
 
 Then plain `python` uses the environment until you run `deactivate`.
-### API access
 
 
 ### Notes
