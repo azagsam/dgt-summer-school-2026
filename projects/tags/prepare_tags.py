@@ -1,11 +1,17 @@
 ﻿"""Read TSV files, extract source tags, and save prepared.json."""
-import argparse
+# %% Imports and file paths
 import csv
 import json
 import re
 from pathlib import Path
 
-DEV = Path(__file__).parent / "dev"
+# Paths are relative to the project root; edit these for your files.
+DEV = Path("projects/tags/dev")
+INPUT_PATH = DEV / "main.tsv"
+EXAMPLES_PATH = DEV / "examples.tsv"
+OUTPUT_PATH = DEV / "prepared.json"
+
+# %% Tag extraction and TSV reading
 TAG_PATTERN = re.compile(
     r"<!--.*?-->|<!\[CDATA\[.*?\]\]>|<\?.*?\?>|"
     r"(?P<tag></?[A-Za-z_:][\w:.-]*(?=[\s/>])"
@@ -35,20 +41,16 @@ def read_tsv(path):
     return rows
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--input", type=Path, default=DEV / "main.tsv")
-    parser.add_argument("--examples", type=Path, default=DEV / "examples.tsv")
-    parser.add_argument("-o", "--output", type=Path, default=DEV / "prepared.json")
-    args = parser.parse_args()
-    if args.output.resolve() in {args.input.resolve(), args.examples.resolve()}:
-        parser.error("Output must differ from the input files")
-    data = {"examples": read_tsv(args.examples), "rows": read_tsv(args.input)}
-    with args.output.open("w", encoding="utf-8") as file:
-        json.dump(data, file, ensure_ascii=False, indent=2)
-        file.write("\n")
-    print(f"Saved {len(data['rows'])} rows to {args.output}")
+# %% Read and process the files
+examples = read_tsv(EXAMPLES_PATH)
+rows = read_tsv(INPUT_PATH)
+data = {"examples": examples, "rows": rows}
 
+# %% Save the processed data
+if OUTPUT_PATH.resolve() in {INPUT_PATH.resolve(), EXAMPLES_PATH.resolve()}:
+    raise ValueError("Output must differ from the input files")
 
-if __name__ == "__main__":
-    main()
+with OUTPUT_PATH.open("w", encoding="utf-8") as file:
+    json.dump(data, file, ensure_ascii=False, indent=2)
+    file.write("\n")
+print(f"Saved {len(rows)} rows to {OUTPUT_PATH}")

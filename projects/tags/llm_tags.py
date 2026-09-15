@@ -1,19 +1,34 @@
 ﻿"""Read prepared.json, call the LLM, evaluate corrections, and save a TSV."""
-import argparse
+# %% Imports and settings
 import csv
 import json
 import os
+import re
 from pathlib import Path
 
 from dotenv import load_dotenv
 from openai import OpenAI
 from pydantic import BaseModel, ValidationError
 
-if __package__:
-    from .prepare_tags import DEV, tag_regex
-else:
-    from prepare_tags import DEV, tag_regex
+# Settings loaded from .env (or existing environment variables).
+load_dotenv()
 
+API_KEY = os.getenv("OPENAI_API_KEY")
+MODEL = os.getenv("OPENAI_MODEL", "gpt-5.1")
+BASE_URL = os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1")
+print(f"Model    : {MODEL}")
+print(f"Base URL : {BASE_URL}")
+
+if not API_KEY:
+    raise ValueError("OPENAI_API_KEY not found - add it to your .env file.")
+
+# Paths are relative to the project root; edit these for your files.
+DEV = Path("projects/tags/dev")
+INPUT_PATH = DEV / "prepared.json"
+safe_model = "".join(c if c.isalnum() or c in "-_" else "_" for c in MODEL)
+OUTPUT_PATH = DEV / f"results_{safe_model}.tsv"
+
+# %% Prompt and evaluation helpers
 SYSTEM_PROMPT = """Correct XML-like tags in the Translation using the Source.
 Preserve the translated text. Preserve every source tag occurrence, including
 attributes, IDs, order, and nesting, around the corresponding translated content.
@@ -22,6 +37,18 @@ If the Source has no tags, remove all tags from the Translation.
 Return JSON with string keys Corrected (the full corrected translation) and
 Comment (an empty string unless the result needs review).
 """
+
+
+TAG_PATTERN = re.compile(
+    r"<!--.*?-->|<!\[CDATA\[.*?\]\]>|<\?.*?\?>|"
+    r"(?P<tag></?[A-Za-z_:][\w:.-]*(?=[\s/>])"
+    r"(?:[^<>\"']|\"[^\"]*\"|'[^']*')*>)", re.DOTALL,
+)
+
+
+def tag_regex(text):
+    """Extract tags in order, preserving attributes and duplicates."""
+    return [m.group("tag") for m in TAG_PATTERN.finditer(text) if m.group("tag")]
 
 
 class TagOutput(BaseModel):
@@ -57,40 +84,39 @@ def evaluate_row(row, client, model, examples):
     return result
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--input", type=Path, default=DEV / "prepared.json")
-    parser.add_argument("-o", "--output", type=Path)
-    args = parser.parse_args()
-    load_dotenv()
-    model = os.getenv("OPENAI_MODEL", "gpt-5.1")
-    safe_model = "".join(c if c.isalnum() or c in "-_" else "_" for c in model)
-    output = args.output or DEV / f"results_{safe_model}.tsv"
-    if output.resolve() == args.input.resolve():
-        parser.error("Output must differ from the input file")
-    with args.input.open(encoding="utf-8") as file:
-        data = json.load(file)
-    client = OpenAI(api_key=os.environ["OPENAI_API_KEY"],
-                    base_url=os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1"))
-    results = []
-    with output.open("w", encoding="utf-8", newline="") as file:
-        writer = None
-        for row in data["rows"]:
-            result = evaluate_row(row, client, model, data["examples"])
-            if writer is None:
-                writer = csv.DictWriter(file, fieldnames=list(result), delimiter="\t")
-                writer.writeheader()
+# %% Read the prepared data
+with INPUT_PATH.open(encoding="utf-8") as file:
+    data = json.load(file)
+examples = data["examples"]
+rows = data["rows"]  # Use data["rows"][:3] to try a small batch.
+
+# %% Connect to the model
+
+client = OpenAI(api_key=API_KEY, base_url=BASE_URL)
+
+# %% Call the model and evaluate each row
+results = []
+for row in rows:
+    result = evaluate_row(row, client, MODEL, examples)
+    results.append(result)
+    print(f"Processed {len(results)}/{len(rows)}")
+
+# %% Review the scores
+print(f"Tag sequence matches: {sum(r['Tags_Match'] for r in results)}/{len(results)}")
+references = [r for r in results if r.get("Corrected")]
+print(f"Exact reference matches: {sum(r['Reference_Match'] is True for r in references)}/{len(references)}")
+print(f"Invalid responses: {sum(bool(r['Error']) for r in results)}")
+
+# %% Save the results
+if OUTPUT_PATH.resolve() == INPUT_PATH.resolve():
+    raise ValueError("Output must differ from the input file")
+if results:
+    with OUTPUT_PATH.open("w", encoding="utf-8", newline="") as file:
+        writer = csv.DictWriter(file, fieldnames=list(results[0]), delimiter="\t")
+        writer.writeheader()
+        for result in results:
             writer.writerow({k: json.dumps(v, ensure_ascii=False) if isinstance(v, list) else v
                              for k, v in result.items()})
-            file.flush()  # Keep completed rows if a later API call fails.
-            results.append(result)
-            print(f"Processed {len(results)}/{len(data['rows'])}")
-    print(f"Tag sequence matches: {sum(r['Tags_Match'] for r in results)}/{len(results)}")
-    references = [r for r in results if r.get("Corrected")]
-    print(f"Exact reference matches: {sum(r['Reference_Match'] is True for r in references)}/{len(references)}")
-    print(f"Invalid responses: {sum(bool(r['Error']) for r in results)}")
-    print(f"Saved {output}")
-
-
-if __name__ == "__main__":
-    main()
+    print(f"Saved {OUTPUT_PATH}")
+else:
+    print("No results to save.")
